@@ -1,0 +1,8 @@
+node_modules
+.idea/
+npm-debug.log
+log/
+dump/
+public/csv/*
+public/report/*
+package-lock.json

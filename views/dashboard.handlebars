@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"
+integrity="sha256-rFMLRbqAytD9ic/37Rnzr2Ycy/RlpxE5QH52h7VoIZo=" crossorigin="anonymous"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css">
+<link rel="stylesheet" href="/vendor/css/carouselTicker.min.css">
+<link rel="stylesheet" href="/vendor/css/theme.min.css">
+<link rel="stylesheet" href="/vendor/css/hc-additional.min.css">
+
+<body>
+{{>navbar}}
+<div id="hola-search">
+    <section id="leads" class="hc-section">
+        <div class="container-fluid">
+            <h1>My Contacts</h1>
+            <!-- root element -->
+            <div id="datagrid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form id="search">
+                            <div class="form-group">
+                                <input name="query" placeholder="Search" class="form-control" v-model="searchQuery">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-sm" onclick="downloadCSV()">Download CSV</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <data-grid
+                            :data="gridData"
+                            :columns="gridColumns"
+                            :filter-key="searchQuery">
+                    </data-grid>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</div>
+
+{{>getinfo}}
+
+{{>footer}}
+
+
+
+
+<!-- component template -->
+<script type="text/x-template" id="grid-template">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th v-for="key in columns"
+                @click="sortBy(key)"
+                :class="{ active: sortKey == key }">
+                ${ key | capitalize }
+                <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+          </span>
+            </th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        <tr v-for="entry in filteredData">
+            <td class="avatar">
+                <div class="profile-img">
+                    <img class="" :src="entry['avatar']" alt="">
+                </div>
+            </td>
+            <td class="fullName"><a style="margin-right: -3px;" :href="'/profile/'+ entry['link']" target="_blank"
+                                    class="text-capitalize">${entry['name']}</a></td>
+            <td class="headline">${entry['headline']}</td>
+            <td class="location">${entry['location']}</td>
+
+            <td class="social-links">
+
+                <a style="margin-right: -3px;" :href="'/profile/'+ entry['link']" target="_blank" v-show="entry['link']"
+                   class="btn btn-social-icon btn-facebook">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <a :href="value" target="_blank" v-if="value" v-for="(value, key) in entry['socialLinks']"
+                   :class="'btn btn-social-icon  btn-'+key">
+                    <i :class="'fa fa-'+key" aria-hidden="true"></i>
+                </a>
+
+            </td>
+            <td class="tags">
+                <div class="badge badge-pill badge-default" v-for="tag in entry['tags']">
+                    ${tag}
+                </div>
+            </td>
+            <td class="note">${entry['note']}</td>
+            <td class="updated">${entry['updated'] | formatDate}</td>
+
+            <td class="contact">
+                <span class="contact-card" data-toggle="tooltip" data-placement="top" title="View contact details">
+                    <button class="btn btn-primary action"  data-toggle="modal" data-target="#myModal" :data-pname="entry['name']" :data-id="entry['id']" :data-link="entry['link']">
+                       <i class="fa fa-address-card " aria-hidden="true"></i>
+                    </button>
+                    <button @click="removeShortList(entry)" class="btn btn-danger action">
+                        <i class="fa fa-remove " aria-hidden="true"></i>
+                    </button>
+                </span>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="/vendor/js/jquery.carouselTicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script src="/vendor/js/theme.min.js"></script>
+<script src="//unpkg.com/axios/dist/axios.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script src="/scripts/dashboard.min.js"></script>
+
+</body>

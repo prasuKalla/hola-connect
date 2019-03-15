@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {{#if title}}
+        <title>{{{title}}}</title>
+    {{else}}
+        <title>HolaConnect | Find the Email Addresses, Phone numbers, Social Links of anyone</title>
+    {{/if}}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/img/favicons.png" type="image/x-icon">
+
+    {{#if description}}
+        <meta name="description" content="{{{description}}}">
+    {{else}}
+        <meta name="description"
+              content="HolaConnect lets you search for people - find email addresses, phone numbers and social links. The world's leading people search engine. ">
+    {{/if}}
+
+    {{#if keywords}}
+        <meta name="keywords" content="{{{keywords}}}">
+    {{else}}
+        <meta name="keywords"
+              content="find email, mobile number ,email search, email lookup, lookup email, lookup emails, lookup contact info, cold emails, warm emails, phone number, mobile phone number">
+    {{/if}}
+
+
+    <script type="text/javascript">
+        function avatarError(e) {
+            console.log('Avatar Error');
+            e.outerHTML = '<span href="" class="etl-icon icon-profile-male hc-iconfont"></span>';
+        }
+
+        function imgError(image) {
+            image.onerror = "";
+            image.src = "/img/profile.png";
+            return true;
+        }
+    </script>
+
+
+
+</head>
+{{{body}}}
+
+</html>

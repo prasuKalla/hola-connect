@@ -1,0 +1,12 @@
+.h-dictionary {
+float: right;
+}
+.h-active{
+    background-color: darkgrey;
+}
+.h-btn-text{
+    font-size: 15px;
+}
+#companies-dir .row{
+    padding: 16px;
+}

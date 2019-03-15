@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+<!-- -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css">
+<link rel="stylesheet" href="/vendor/css/carouselTicker.min.css">
+<link rel="stylesheet" href="/vendor/css/theme.min.css">
+<link rel="stylesheet" href="/vendor/css/hc-additional.min.css">
+
+
+
+<body>
+{{>navbar}}
+
+
+<div id="hola-page">
+
+    <section style="padding-top: 140px">
+        <div class="container">
+            <div class="row ">
+
+                <div class="col-md-5">
+                    <a class="h-btn-text h-active btn" href="./company" type="button" >Companies</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="h-btn-text btn"  type="button" href="./designation" >Designations</a>
+                </div>
+                <div class="col-md-5">
+                    <a class="h-btn-text h-dictionary btn" type="button" href="./city" >Locations</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="hc-section">
+
+        <div class="container">
+            <div class="card-title">
+                <h2>Country Directory</h2>
+            </div>
+            <div class="card">
+
+                <div class="card-block" id="designation-dir">
+                    {{#if text}}
+
+                        {{#if exist}}
+                            <div class="row">
+                                {{#each companies}}
+                                    <div class="col-md-3"><b><a
+                                            href="../search?type=adv&company={{{this.name}}}">{{{this.name}}}</a></b>
+                                    </div>
+
+                                {{/each}}
+
+                            </div>
+                            <input onclick="next()" type="button" class="btn pull-right" value="Next"/>
+                        {{else}}
+                            <div class="search-info">No Results found</div>
+                        {{/if}}
+                        <input id="prev" onclick="prev()" style="margin-right: 2px" type="button"
+                               class="btn hidden pull-right" value="Previous"/>
+                    {{else}}
+
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Argentina"
+                                                         class='f-word'>Argentina</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Australia"
+                                                         class='f-word'>Australia</a></b></div>
+
+
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Brazil"
+                                                         class='f-word'>Brazil</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Canada"
+                                                         class='f-word'>Canada</a></b></div>
+                            <!--//s-->
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Chile"
+                                                         class='f-word'>Chile</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=France"
+                                                         class='f-word'>France</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Germany"
+                                                         class='f-word'>Germany</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=India"
+                                                         class='f-word'>India</a></b></div>
+
+
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Indonesia"
+                                                         class='f-word'>Indonesia</a></b></div>
+
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Italy"
+                                                         class='f-word'>Italy</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Mexico"
+                                                         class='f-word'>Mexico</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Malaysia"
+                                                         class='f-word'>Malaysia</a></b></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Netherlands"
+                                                         class='f-word'>Netherlands</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Philippines"
+                                                         class='f-word'>Philippines</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Saudi Arabia"
+                                                         class='f-word'>Saudi Arabia</a></b></div>
+
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Singapore"
+                                                         class='f-word'>Singapore</a></b></div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Spain"
+                                                         class='f-word'>Spain</a></b></div>
+
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=United Kingdom"
+                                                         class='f-word'>United Kingdom</a></b></div>
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=Thailand"
+                                                         class='f-word'>Thailand</a></b></div>
+
+                            <div class="col-md-3"><b> <a href="../search?type=adv&location=United States of America"
+                                                         class='f-word'>United States of America</a></b></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="button" class="btn pull-right hidden" id="btn-back" value="Back"
+                                       onclick="back()">
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+</div>
+{{>customer}}
+{{>footer}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script src="/vendor/js/jquery.carouselTicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script src="/vendor/js/theme.min.js"></script>
+
+</body>

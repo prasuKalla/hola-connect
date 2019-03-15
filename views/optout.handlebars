@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+<!-- -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css">
+<link rel="stylesheet" href="/vendor/css/carouselTicker.min.css">
+<link rel="stylesheet" href="/vendor/css/theme.min.css">
+<link rel="stylesheet" href="/vendor/css/hc-additional.min.css">
+
+<body>
+{{>navbar}}
+
+<div class="d-none" id="optoutMessage">{{{message}}}</div>
+<div id="hola-home">
+    <section style="padding-top:180px" style="padding-bottom: 20px">
+        <div class="container">
+            <h1 class="text-center">Opt Out</h1>
+            <br>
+            <div align="center">For us to process your removal request, we need to verify your email id and other
+                credentials. We'll send you a verification link after you give us the given details, following which we
+                will have the concerned profile deleted when successfully verified.<br>Note: Ensure that you paste your
+                valid Holaconnect Profile URL to get the request processed without any hassle. (Eg.
+                https://www.holaconnect.com/profile/john-doe-email-phone-f4ct1240)
+            </div><br><br>
+
+
+            <div class="col-md-6 offset-md-3">
+                <form>
+                    <div class="card-block">
+
+                        <div class="form-group">
+                            <label for="forInputName">Name</label>
+                            <input type="text" name="name" class="form-control" id="full-name" placeholder="Enter name" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email Address</label>
+                            <input type="email" name="email" class="form-control" id="email"
+                                   placeholder="Enter email" autocomplete="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="forInputPhone">Holaconnect Profile URL</label>
+                            <input type="url" name="holalink" class="form-control" id="profile"
+                                   placeholder=" Paste Holaconnect Profile URL">
+                        </div>
+                        <div class="form-group">
+
+                            <div class="g-recaptcha" id="html_element"></div>
+                        </div>
+                        <button id="btn-optout" class="btn btn-primary">Submit</button>
+                    </div>
+                    <p id="alert"></p>
+                </form>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+{{>customer}}
+
+{{>footer}}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="/vendor/js/jquery.carouselTicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script src="/vendor/js/theme.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        onload();
+
+        function onload() {
+            let message = $('#optoutMessage').html();
+            if (message) {
+                swal('', message, 'success')
+            }
+        }
+
+        $('#btn-optout').click(function (event) {
+            $('#alert').hide();
+            event.preventDefault();
+            $('#alert').css('color', 'red');
+            if ($('#email').val() === "" || $('#full-name').val() === "" || $('#profile').val() === "") {
+                swal('', "Please fill all fields", "error")
+            }
+
+            if (!isEmail($('#email').val())) {
+                swal('', "Please enter a valid email address", "error")
+            }
+
+            if (!isURL($('#profile').val())) {
+                swal('', "Please enter a valid URL", "error")
+            }
+
+            $.ajax({
+                url: "/api/optout",
+                method: "POST",
+                data: {
+                    name: $('#full-name').val(),
+                    email: $('#email').val(),
+                    holalink: $('#profile').val()
+                },
+
+                success: function (data) {
+                    swal('', data.message, "success")
+                },
+
+                error: function (xhr, err) {
+                    let message = JSON.parse(xhr.responseText).message;
+                    swal('', message, 'info')
+                }
+            });
+        })
+
+    })
+
+    function isURL(url) {
+        return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
+    }
+
+    function isEmail(email) {
+        let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+</script>
+</body>
+
+<!--<script type="text/javascript">-->
+    <!--var onloadCallback = function () {-->
+
+        <!--grecaptcha.render('html_element', {-->
+            <!--'sitekey': '6LdMPBsUAAAAAIg3GAMpJFD6pvcrwwOmH97jwdv_',-->
+        <!--});-->
+    <!--}-->
+<!--</script>-->
+<script src="//www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+
+

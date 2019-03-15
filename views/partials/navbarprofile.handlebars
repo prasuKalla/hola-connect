@@ -1,0 +1,87 @@
+<style>
+    /*.top-bar{*/
+        /*background: rgb(29, 141, 242); !* Old browsers *!*/
+        /*background: -moz-linear-gradient(45deg, rgba(29, 141, 242, 1) 0%, rgba(11, 50, 130, 1) 100%); !* FF3.6-15 *!*/
+        /*background: -webkit-linear-gradient(45deg, rgba(29, 141, 242, 1) 0%, rgba(11, 50, 130, 1) 100%); !* Chrome10-25,Safari5.1-6 *!*/
+        /*background: linear-gradient(45deg, rgba(29, 141, 242, 1) 0%, rgba(11, 50, 130, 1) 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+        /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1d8df2', endColorstr='#0b3282', GradientType=1); !* IE6-9 fallback on horizontal gradient *!*/
+    /*}*/
+
+    #searchBtn{
+        height: 45px;	width: 45px;	border-radius: 0 3px 3px 0;	background-color: #19B4FF;
+    }
+
+</style>
+<div class="top-bar">
+    <div class="container p-0">
+        <nav class="navbar navbar-toggleable-md navbar-inverse">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-brand">
+                <a href="/" class="navbar-logo">
+                    <img src="/img/Lusha logo.svg"  alt="Lusha"></a>
+                    <img src="/img/Hola.png" alt="Holaconnect"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form action="/search" id="menu-search" style="width: 100%;" class="form-inline mx-auto ">
+                    <input class="form-control mr-sm-2" style="width: 70%;" type="text" value="{{{basicSearchQuery.q}}}" id="q" name="q" placeholder="Enter Name, Location, Company">
+                    <button class="btn btn-white btn-white-outline my-2 my-sm-0" id="searchBtn" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+                <ul class="navbar-nav my-2 my-lg-0">
+
+                    <div id="userLoggedIn" class="d-none">
+                        <li class="nav-item dropdown text-uppercase">
+                            <a class="nav-link link dropdown-toggle text-uppercase"
+                               data-toggle="dropdown"
+                               href="https://holaconnect.com/"><span id="userName">Welcome {{{userInfo.name}}}</span>(<span
+                                    id="creditLeft">{{{userInfo.creditLeft}}}</span>)</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item text-uppercase" href="/mycontacts" target="_blank">My
+                                    Contacts</a>
+                                <a class="dropdown-item text-uppercase" href="/logout">Logout</a>
+                            </div>
+                        </li>
+
+                    </div>
+
+
+                    <div id="userLoggedOut" class="d-none">
+                        <!--<li class="nav-item nav-btn">-->
+                            <!--<button class="btn btn-white btn-white-outline" onclick="navbarlogin()">LOGIN-->
+                            <!--</button>-->
+                        <!--</li>-->
+
+                        <li class="nav-item nav-btn">
+                            <button class="btn btn-white btn-white-outline" style="background-color: #19B4FF" onclick="location.href='https://dashboard.lusha.co/signup'">LOGIN
+                            </button>
+                            <!--<a class="nav-link btn btn-white btn-white-outline"  href="/login?redirectTo={{{redirectTo}}}">LOGIN</a>-->
+                        </li>
+                        <!--&nbsp  &nbsp-->
+                        <!--<li class="nav-item nav-btn">-->
+                            <!--<button class="btn btn-white btn-white-outline" style="background-color: #19B4FF" onclick="location.href='https://dashboard.lusha.co/signup'">SIGN UP-->
+                            <!--</button>-->
+                            <!--&lt;!&ndash;<a class="nav-link btn btn-white btn-white-outline"  href="/login?redirectTo={{{redirectTo}}}">LOGIN</a>&ndash;&gt;-->
+                        <!--</li>-->
+
+                    </div>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function navbarlogin() {
+        var url = window.location.href.split('/');
+        var redirectTo = '';
+        redirectTo = redirectTo + '/' + url[3];
+        for (var i = 4; i < url.length; i++) {
+            redirectTo = redirectTo + '/' + url[i];
+        }
+        window.location = '/login?redirectTo=' + redirectTo;
+    }
+</script>

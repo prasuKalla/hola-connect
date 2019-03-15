@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+<!-- -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css">
+<link rel="stylesheet" href="/vendor/css/carouselTicker.min.css">
+<link rel="stylesheet" href="/vendor/css/theme.min.css">
+<link rel="stylesheet" href="/vendor/css/hc-additional.min.css">
+
+
+<body>
+{{>navbar}}
+
+
+<div id="hola-page">
+
+    <section style="padding-top: 140px">
+        <div class="container">
+            <div class="row ">
+
+                <div class="col-md-5">
+                    <a class="h-btn-text h-active btn" href="./company" type="button" >Companies</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="h-btn-text btn"  type="button" href="./designation" >Designations</a>
+                </div>
+                <div class="col-md-5">
+                    <a class="h-btn-text h-dictionary btn" type="button" href="./city" >Locations</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hc-section">
+
+        <div class="container">
+            <div class="card-title">
+                <h2>Company Directory</h2>
+            </div>
+            <div class="card">
+
+                <div class="card-block" id="companies-dir">
+                    {{#if text}}
+
+                        {{#if exist}}
+                            <div class="row">
+                                {{#each companies}}
+                                    <div class="col-md-3"><b><a
+                                            href="../search??name=&location=usa&job_title=&type=adv&company={{{this._id}}}">{{{this._id}}}</a></b>
+                                    </div>
+
+                                {{/each}}
+
+                            </div>
+                            <input onclick="next()" type="button" class="btn pull-right" value="Next"/>
+                        {{else}}
+                            <div class="search-info">No Results found</div>
+                        {{/if}}
+                        <input id="prev" onclick="prev()" style="margin-right: 2px" type="button"
+                               class="btn hidden pull-right" value="Previous"/>
+                    {{else}}
+
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>A</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>B</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>C</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>D</a></b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>E</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>F</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>G</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>H</a></b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>I</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>J</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>K</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>L</a></b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>M</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>N</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>O</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>P</a></b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>Q</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>R</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>S</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>T</a></b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>U</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>V</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>W</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>X</a></b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>Y</a></b></div>
+                            <div class="col-md-3"><b> <a href="javascript:void(0)" onclick='dict(this)'
+                                                         class='f-word'>Z</a></b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="button" class="btn pull-right hidden" id="btn-back" value="Back"
+                                       onclick="back()">
+                            </div>
+                        </div>
+                    {{/if}}
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+</div>
+{{>customer}}
+{{>footer}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script src="/vendor/js/jquery.carouselTicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script src="/vendor/js/theme.min.js"></script>
+
+</body>

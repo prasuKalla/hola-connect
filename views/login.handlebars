@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"
+      integrity="sha256-rFMLRbqAytD9ic/37Rnzr2Ycy/RlpxE5QH52h7VoIZo=" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css"
+      integrity="sha256-1hIhSlowg4vqaFZ/bikPMfEGwSgM0FtIs7mx1PADHCk=" crossorigin="anonymous"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+<!-- -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css">
+<link rel="stylesheet" type="text/css"
+      href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"/>
+<link rel="stylesheet" href="/vendor/css/spin.min.css">
+<link rel="stylesheet" href="/vendor/css/carouselTicker.min.css">
+<link rel="stylesheet" href="/vendor/css/theme.min.css">
+<link rel="stylesheet" href="/vendor/css/hc-additional.min.css">
+
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="/vendor/js/jquery.carouselTicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script src="/vendor/js/theme.min.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+
+
+{{>navbar}}
+<div id="hola-home">
+    <section class="hc-section hc-section-hero hc-section-full hc-parallax-background hc-section-with-arrow"
+             id="header1-1">
+
+
+        <div class="hc-table-cell">
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="hc-section col-md-4">
+                        <div style="text-align: center">
+                            <a onclick="login()"><img style="cursor: pointer" src="/img/btn_google_signin_dark_pressed_web@2x.png"></a>
+                            <div class="tos-form">
+                                <form>
+                                    <input type="checkbox" name="tos" value="tos" id="tos" checked> I've read the <a
+                                        class="" style="color: black" href="/privacy">Terms of Service</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+{{>footer}}
+<script>
+
+    function login() {
+        if ($('#tos').is(':checked')) {
+            window.location.href = '/auth/google?redirectTo={{{redirectTo}}}';
+        }
+        else {
+            alert("Please confirm terms of service");
+        }
+    }
+
+    window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#237afc"
+                },
+                "button": {
+                    "background": "transparent",
+                    "text": "#fff",
+                    "border": "#fff"
+                }
+            },
+            "position": "top",
+            "content": {
+                "message": "Holaconnect uses cookies to ensure you get the best experience on our website.",
+                "link": "Learn More"
+            }
+        })
+    });
+</script>
+</body>
